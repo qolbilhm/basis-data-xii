@@ -1,4 +1,4 @@
- Ketentuan tabel: tipe data dan constraintnya 
+ **Ketentuan tabel: tipe data dan constraintnya :**  
 - NIP: int & primary key
 - NDep: varchar & NOT NULL
 - NBlk: varchar
