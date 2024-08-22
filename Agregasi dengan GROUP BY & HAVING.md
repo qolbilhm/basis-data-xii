@@ -79,16 +79,14 @@ Hasil dari query `SELECT * FROM pegawai` menunjukkan bahwa tabel `pegawai` memil
 SELECT COUNT(NIP) AS JumlahPegawai, COUNT(Jabatan) AS JumlahJabatan FROM pegawai;
 ```
 ![](asset/5.JPG)
-1. `SELECT COUNT(NIP) AS JumlahPegawai`:
-- Ini adalah sebuah fungsi yang menghitung jumlah baris dalam kolom `NIP`dari tabel `pegawai`.
+- `SELECT`  sebuah fungsi yang menghitung jumlah baris dalam kolom `NIP`dari tabel `pegawai`.
 - `COUNT(NIP)`akan menghitung jumlah baris yang memiliki nilai di kolom `NIP`. Jadi, jika ada 9 baris dengan nilai yang valid di kolom `NIP`, maka hasilnya akan 9.
-- Hasil dari perhitungan ini diberi alias `JumlahPegawai`.
-2. `COUNT(Jabatan) AS JumlahJabatan`:
-- Ini juga merupakan fungsi yang menghitung jumlah baris dalam kolom `Jabatan`dari tabel `pegawai`.
+- `AS` untuk mengubah nama dari suatu kolom untuk sementara
+- `JumlahPegawai` merupakan nama ubahan  dari perintah AS yang digunakan, dan nama sementara dari perintah `COUNT(NIP)`
 - `COUNT(Jabatan)`akan menghitung jumlah baris yang memiliki nilai di kolom `Jabatan`. Jadi, jika ada 9 baris dengan nilai yang valid di kolom `Jabatan`, maka hasilnya akan 9.
-- Hasil dari perhitungan ini diberi alias `JumlahJabatan`.
-3. `FROM pegawai;`:
-- Ini menunjukkan bahwa query ini yang akan dijalankan pada tabel `pegawai`.
+- `AS` untuk mengubah nama dari suatu kolom untuk sementara
+- `Jumlah Jabatan` merupakan nama sementara dari perintah `COUNT(Jabatan)`  
+- `FROM pegawai;`Ini menunjukkan bahwa query ini yang akan dijalankan pada tabel `pegawai`.
 
 Jadi, query ini akan mengembalikan dua kolom: `JumlahPegawai`yang berisi jumlah baris dengan nilai valid di kolom `NIP`, dan `JumlahJabatan`yang berisi jumlah baris dengan nilai valid di kolom `Jabatan`. Hasil query ini menunjukkan bahwa terdapat 9 pegawai dan 9 jabatan yang berbeda di dalam tabel `pegawai`. 
 
@@ -100,17 +98,15 @@ FROM pegawai
 WHERE NoCab = 'C102';
 ```
 ![](asset/6.JPG)
-1. `SELECT COUNT(NIP) AS JumlahPegawai`:
-- Ini adalah sebuah fungsi yang menghitung jumlah baris dalam kolom `NIP`dari tabel `pegawai`.
-- `COUNT(NIP)`akan menghitung jumlah baris yang memiliki nilai di kolom `NIP`. Jadi, jika ada 3 baris dengan nilai yang valid di kolom `NIP`, maka hasilnya akan 3.
-- Hasil dari perhitungan ini diberi alias `JumlahPegawai`.
-2. `FROM pegawai`:
+- `SELECT` untuk memilih kolom apa saja yang ingin dipilih
+- `COUNT(NIP)` menghitung jumlah baris data yang memiliki nilai isi data dari jolom yang dipilih `NIP` adalah nama kolom yang dipilih untuk dihitung
+- `AS` untuk mengubah nama dari suatu kolom untuk sementara
+- `JumlahPegawai` merupakan nama ubahan  dari perintah AS yang digunakan, dan nama sementara dari perintah `COUNT(NIP)`
+- `FROM pegawai` Ini menunjukkan bahwa query ini yang akan dijalankan pada tabel `pegawai`.
 - Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
-3. `WHERE NoCab = 'C102'`:
-- Ini adalah sebuah filter yang akan menyeleksi hanya baris-baris yang memiliki nilai `'C102'`di kolom `NoCab`.
-- Jadi, query ini akan menghitung jumlah baris di tabel `pegawai`yang memiliki nilai `'C102'`di kolom `NoCab`.
+3. `WHERE` merupakan kondisi yang harus dipenuhi, jadi hanya barisan data ayng memiliki `C102` di kolom `NoCab` yang bisa dihitung
 
-Jadi, query ini akan mengembalikan jumlah pegawai yang bekerja di cabang dengan nomor `'C102'`, yang dalam kasus ini adalah 3 orang.
+Jadi, query ini akan mengembalikan jumlah pegawai yang bekerja di cabang dengan nomor `'C102'`, yang dalam tabel ini adalah 3 orang.
 
 3. SELECT COUNT, FROM, GROUP BY
 ```sql
@@ -118,15 +114,16 @@ SELECT NoCab, COUNT(NIP) AS Jumlah_Pegawai
 FROM pegawai
 GROUP BY NoCab;
 ```
-![](asset/8.JPG)
-1. `SELECT NoCab, COUNT(NIP) AS Jumlah_Pegawai`:
-- `NoCab`adalah kolom yang akan diambil nilai-nilainya.
-- `COUNT(NIP) AS Jumlah_Pegawai`adalah sebuah fungsi  yang menghitung jumlah baris dalam kolom `NIP`untuk masing-masing nilai `NoCab`. Hasilnya akan diberi alias `Jumlah_Pegawai`.
-2. `FROM pegawai`:
+![](asset/7.JPG)
+- `SELECT` untuk memilih kolom apa saja yang ingin dipilih
+- `NoCab`adalah nama kolom yang ingin ditampilkan.
+- `COUNT(NIP)` menghitung jumlah baris data yang memiliki nilai isi data dari jolom yang dipilih `NIP` adalah nama kolom yang dipilih untuk dihitung
+- `AS` untuk mengubah nama dari suatu kolom untuk sementara
+- `JumlahPegawai` merupakan nama ubahan  dari perintah AS yang digunakan, dan nama sementara dari perintah `COUNT(NIP)`
+- `FROM pegawai` Ini menunjukkan bahwa query ini yang akan dijalankan pada tabel `pegawai`.
 - Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
-3. `GROUP BY NoCab`:
-- Ini adalah _grouping Clause_ yang akan mengelompokkan baris-baris berdasarkan nilai pada kolom `NoCab`.
-- Jadi, `COUNT(NIP)`akan dihitung untuk masing-masing nilai unik di kolom `NoCab`.
+- `GROUP BY` untuk ngelompokkan data berdasarkan nilai data yang telah di tentukan pada kolom yang dipilih 
+- `NoCab`adalah nama kolom yang ingin ditampilkan.
 
 Hasil query ini menunjukkan jumlah pegawai untuk masing-masing cabang berdasarkan nilai `NoCab`. Terlihat bahwa:
 - Cabang C101 memiliki 2 pegawai
@@ -136,10 +133,11 @@ Hasil query ini menunjukkan jumlah pegawai untuk masing-masing cabang berdasarka
 
 4. SELECT SUM, FROM
 ```sql
-SELECT SUM(Gaji) AS Total_Gaji
-FROM pegawai;
+SELECT NoCab, COUNT(NIP) AS Jumlah_Pegawai
+FROM pegawai
+GROUP BY NoCab HAVING COUNT(NIP) >= 3;
 ```
-![](asset/9.JPG)
+![](asset/8.jpg)
 1. `SELECT SUM(Gaji) AS Total_Gaji`:
 - `SUM(Gaji)`adalah sebuah fungsi yang menjumlahkan semua nilai di kolom `Gaji`tabel `pegawai`.
 - Hasil penjumlahan ini diberi alias `Total_Gaji`.
