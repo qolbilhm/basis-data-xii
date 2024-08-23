@@ -10,9 +10,9 @@
 - NoCab: Varchar, NOT NULL
 ### Hasil Struktur tabel Pegawai 
 
-![](asset/1.JPG)
+![](asset/1.jpg)
 (Hasil di PhpMYAdmin)
-![github](asset/3.JPG)
+![github](asset/3.jpg)
 
 **Analisis Query :**  
 - `desc pegawai ;` Kueri ini digunakan untuk menampilkan struktur tabel pegawai, 
@@ -43,9 +43,9 @@ kombinasi NoCab dan satu atau beberapa kolom lainnya harus unik.
 **Kesimpulan Analisis Query:** 
 Analisis ini memberikan contoh tentang bagaimana tabel `pegawai` diatur dan bagaimana data di dalamnya akan disimpan dan dikelola, termasuk kendali integritas data melalui penggunaan kunci utama dan indeks unik.
 ### Hasil data tabel Pegawai 
-![github](asset/2.JPG)
+![github](asset/2.jpg)
 (Hasil di PhpMyAdmin)
-![github](asset/4.JPG)
+![github](asset/4.jpg)
 
 **Analisis Query :** 
 - **NIP (Nomor Induk Pegawai)**
@@ -72,13 +72,13 @@ Kolom ini menyimpan jabatan pegawai. Nilai yang ada seperti 'Manajer', 'Sales', 
 
 **Kesimpulan Analisis Query :**
 Hasil dari query `SELECT * FROM pegawai` menunjukkan bahwa tabel `pegawai` memiliki struktur yang konsisten dengan informasi lengkap tentang pegawai. Kolom `NIP` bertindak sebagai kunci utama, memastikan bahwa setiap pegawai memiliki identifikasi unik, sementara kolom `Telp` juga memiliki kunci unik, mencegah adanya duplikasi nomor telepon.
+### GROUP BY & HAVING
 
-### Select 
 1.  SELECT COUNT
 ```sql
 SELECT COUNT(NIP) AS JumlahPegawai, COUNT(Jabatan) AS JumlahJabatan FROM pegawai;
 ```
-![](asset/5.JPG)
+![](asset/5.jpg)
 - `SELECT`  sebuah fungsi yang menghitung jumlah baris dalam kolom `NIP`dari tabel `pegawai`.
 - `COUNT(NIP)`akan menghitung jumlah baris yang memiliki nilai di kolom `NIP`. Jadi, jika ada 9 baris dengan nilai yang valid di kolom `NIP`, maka hasilnya akan 9.
 - `AS` untuk mengubah nama dari suatu kolom untuk sementara
@@ -97,14 +97,14 @@ SELECT COUNT(NIP) AS JumlahPegawai
 FROM pegawai
 WHERE NoCab = 'C102';
 ```
-![](asset/6.JPG)
+![](asset/6.jpg)
 - `SELECT` untuk memilih kolom apa saja yang ingin dipilih
 - `COUNT(NIP)` menghitung jumlah baris data yang memiliki nilai isi data dari jolom yang dipilih `NIP` adalah nama kolom yang dipilih untuk dihitung
 - `AS` untuk mengubah nama dari suatu kolom untuk sementara
 - `JumlahPegawai` merupakan nama ubahan  dari perintah AS yang digunakan, dan nama sementara dari perintah `COUNT(NIP)`
-- `FROM pegawai` Ini menunjukkan bahwa query ini yang akan dijalankan pada tabel `pegawai`.
-- Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
-3. `WHERE` merupakan kondisi yang harus dipenuhi, jadi hanya barisan data ayng memiliki `C102` di kolom `NoCab` yang bisa dihitung
+- `FROM pegawai` Ini menunjukkan bahwa query ini yang akan dijalankan pada tabel `pegawai`. Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
+- `WHERE` merupakan kondisi yang harus dipenuhi, jadi hanya barisan data ayng memiliki `C102` di kolom `NoCab` yang bisa dihitung
+- `NoCab = 'C102` adalah kondisi `WHERE` yang harus dipen-uhi, jadi hanya barisan data yang memiliki nilai `C102` di kolom `NoCab` yang bisa dihitung
 
 Jadi, query ini akan mengembalikan jumlah pegawai yang bekerja di cabang dengan nomor `'C102'`, yang dalam tabel ini adalah 3 orang.
 
@@ -114,14 +114,13 @@ SELECT NoCab, COUNT(NIP) AS Jumlah_Pegawai
 FROM pegawai
 GROUP BY NoCab;
 ```
-![](asset/7.JPG)
+![](asset/7.jpg)
 - `SELECT` untuk memilih kolom apa saja yang ingin dipilih
 - `NoCab`adalah nama kolom yang ingin ditampilkan.
 - `COUNT(NIP)` menghitung jumlah baris data yang memiliki nilai isi data dari jolom yang dipilih `NIP` adalah nama kolom yang dipilih untuk dihitung
 - `AS` untuk mengubah nama dari suatu kolom untuk sementara
 - `JumlahPegawai` merupakan nama ubahan  dari perintah AS yang digunakan, dan nama sementara dari perintah `COUNT(NIP)`
-- `FROM pegawai` Ini menunjukkan bahwa query ini yang akan dijalankan pada tabel `pegawai`.
-- Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
+- `FROM pegawai` Ini menunjukkan bahwa query ini yang akan dijalankan pada tabel `pegawai`. Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
 - `GROUP BY` untuk ngelompokkan data berdasarkan nilai data yang telah di tentukan pada kolom yang dipilih 
 - `NoCab`adalah nama kolom yang ingin ditampilkan.
 
@@ -138,47 +137,66 @@ FROM pegawai
 GROUP BY NoCab HAVING COUNT(NIP) >= 3;
 ```
 ![](asset/8.jpg)
-1. `SELECT SUM(Gaji) AS Total_Gaji`:
-- `SUM(Gaji)`adalah sebuah fungsi yang menjumlahkan semua nilai di kolom `Gaji`tabel `pegawai`.
-- Hasil penjumlahan ini diberi alias `Total_Gaji`.
-2. `FROM pegawai`:
-- Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
+- `SELECT` untuk memilih kolom apa saja yang ingin dipilih
+- `NoCab`adalah nama kolom yang ingin ditampilkan.
+- `COUNT(NIP)` menghitung jumlah baris data yang memiliki nilai isi data dari jolom yang dipilih `NIP` adalah nama kolom yang dipilih untuk dihitung
+- `AS` untuk mengubah nama dari suatu kolom untuk sementara
+- `JumlahPegawai` merupakan nama ubahan  dari perintah AS yang digunakan, dan nama sementara dari perintah `COUNT(NIP)`
+- `FROM pegawai` Ini menunjukkan bahwa query ini yang akan dijalankan pada tabel `pegawai`. Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
+- `GROUP BY` untuk ngelompokkan data berdasarkan nilai data yang telah di tentukan pada kolom yang dipilih 
+- `NoCab`adalah nama kolom yang ingin ditampilkan.
+- `Having` untuk menentukan kondisi yang harus dipenuhi oleh suatuu kelompok data agar bisa ditampilkan 
+- `COUNT (NIP) >= 3` merupakan kondisi yang harus dipenuhi oleh suatu kelompok data
 
 Jadi, query ini akan menghitung total gaji dari semua pegawai yang ada di tabel `pegawai`. Hasil query menunjukkan bahwa total gaji seluruh pegawai adalah Rp 30.575.000.
 
-5. SELECT SUM, FROM, WHERE
+5. SELECT SUM
+```sql
+SELECT SUM(Gaji) AS Total_Gaji
+FROM pegawai;
+```
+![](asset/9.jpg)
+- `SELECT` untuk memilih kolom apa saja yang ingin dipilih
+- `SUM (Gaji)` untuk menghitung Jumlah data khusus angka pada kolom yang dipilih. Gaji merupakan nama kolom yang dipilih untuk dihitung jumlah isi datanya
+-  `AS` untuk mengubah nama dari suatu kolom untuk sementara
+- `Total_Gaji` merrupakan nama sementara dari dari perintah AS
+- `FROM pegawai` Ini menunjukkan bahwa query ini yang akan dijalankan pada tabel `pegawai`.
+- Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
+
+Jadi, kolom gaji yang isi dataya berupa angka-angka, semuanya dijumlahkan menjadi satu seperti ditotalkan. Dan hasilnya adalah 305575000. Adapu nama kolom dari hasil jumlah tersebut diubh dari `SUM(Gaji)` menjadi `Total_Gaji`
+
+6. SELECT SUM, FROM, WHERE
 ```sql
 SELECT SUM(Gaji) AS Gaji_Manajer
 FROM pegawai
 WHERE Jabatan = 'Manajer';
 ```
-![](asset/10.JPG)
-1. `SELECT SUM(Gaji) AS Gaji_Manajer`:
-- `SUM(Gaji)`adalah sebuah fungsi yang menjumlahkan semua nilai di kolom `Gaji`tabel `pegawai`.
-- Hasil penjumlahan ini diberi alias `Gaji_Manajer`.
-2. `FROM pegawai`:
-- Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
-3. `WHERE Jabatan = 'Manajer'`:
-- Ini adalah sebuah _filter_ yang akan menyeleksi hanya baris-baris yang memiliki nilai 'Manajer' di kolom `Jabatan`.
-- Jadi, query ini akan menjumlahkan gaji hanya untuk pegawai yang memiliki jabatan sebagai Manajer.
+![](asset/10.jpg)
+- `SELECT` untuk memilih kolom apa saja yang ingin dipilih
+- `SUM (Gaji)` untuk menghitung Jumlah data khusus angka pada kolom yang dipilih. Gaji merupakan nama kolom yang dipilih untuk dihitung jumlah isi datanya
+-  `AS` untuk mengubah nama dari suatu kolom untuk sementara
+- `Total_Gaji` merrupakan nama sementara dari dari perintah AS
+- `FROM pegawai` Ini menunjukkan bahwa query ini yang akan dijalankan pada tabel `pegawai` Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
+- `WHERE` kondisi yang harus dipenuhi oleh suatu kolom agar datanya bisa dijumlah
+- `Jabatan ='Manajer'` merupakan kondisi dari `WHERE`. Hnaya barisan data yang kolom jabatannya berisi manajer yang kolom gajinya bisa di jumlahkan.
 
 Hasil query ini menunjukkan bahwa total gaji untuk seluruh pegawai yang berjabatan sebagai Manajer adalah Rp 17.250.000.
 
-6. SELECT, FROM, GROUP BY
+7. SELECT, FROM, GROUP BY
 ```SQL
 SELECT NoCab, SUM(Gaji) AS TotalGaji
 FROM pegawai
 GROUP BY NoCab;
 ```
-![](asset/11.JPG)
-1. `SELECT NoCab, SUM(Gaji) AS TotalGaji`:
-- `NoCab`adalah kolom yang akan diambil nilai-nilainya.
-- `SUM(Gaji) AS TotalGaji`adalah sebuah fungsi yang menjumlahkan semua nilai di kolom `Gaji`untuk masing-masing nilai `NoCab`. Hasilnya akan diberi alias `TotalGaji`.
-2. `FROM pegawai`:
-- Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
-3. `GROUP BY NoCab`:
-- Ini adalah _grouping Clause_ yang akan mengelompokkan baris-baris berdasarkan nilai pada kolom `NoCab`.
-- Jadi, `SUM(Gaji)`akan dihitung untuk masing-masing nilai unik di kolom `NoCab`.
+![](asset/11.jpg)
+- `SELECT` untuk memilih kolom apa saja yang ingin dipilih
+- `NoCab`adalah nama kolom yang ingin ditampilkan.
+- `SUM (Gaji)` untuk menghitung Jumlah data khusus angka pada kolom yang dipilih. Gaji merupakan nama kolom yang dipilih untuk dihitung jumlah isi datanya
+-  `AS` untuk mengubah nama dari suatu kolom untuk sementara
+- `Total_Gaji` merrupakan nama sementara dari dari perintah AS
+- `FROM pegawai` Ini menunjukkan bahwa query ini yang akan dijalankan pada tabel `pegawai` Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
+- `GROUP BY` untuk ngelompokkan data berdasarkan nilai data yang telah di tentukan pada kolom yang dipilih 
+- `NoCab`adalah nama kolom yang ingin ditampilkan.
 
 Hasil query ini menunjukkan total gaji untuk masing-masing cabang berdasarkan nilai `NoCab`. Terlihat bahwa:
 - Cabang C101 memiliki total gaji Rp 7.750.000
@@ -186,77 +204,78 @@ Hasil query ini menunjukkan total gaji untuk masing-masing cabang berdasarkan ni
 - Cabang C103 memiliki total gaji Rp 9.000.000
 - Cabang C104 memiliki total gaji Rp 4.375.000
 
-7. SELECT, FROM, GROUP BY, HAVING
+8. SELECT, FROM, GROUP BY, HAVING
 ```sql
 SELECT NoCab, SUM(Gaji) AS Total_Gaji
 FROM pegawai
 GROUP BY NoCab
 HAVING SUM(Gaji) >= 8000000;
 ```
-![](asset/12.JPG)
-1. `SELECT NoCab, SUM(Gaji) AS Total_Gaji`:
-- `NoCab`adalah kolom yang akan diambil nilai-nilainya.
-- `SUM(Gaji) AS Total_Gaji`adalah sebuah fungsi yang menjumlahkan semua nilai di kolom `Gaji`untuk masing-masing nilai `NoCab`. Hasilnya akan diberi alias `Total_Gaji`.
-2. `FROM pegawai`:
-- Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
-3. `GROUP BY NoCab`:
-- Ini adalah _grouping Clause_ yang akan mengelompokkan baris-baris berdasarkan nilai pada kolom `NoCab`.
-- Jadi, `SUM(Gaji)`akan dihitung untuk masing-masing nilai unik di kolom `NoCab`.
-4. `HAVING SUM(Gaji) >= 8000000`:
-- Ini adalah sebuah filter yang akan menyeleksi hanya kelompok-kelompok yang memiliki total gaji ( `SUM(Gaji)`) lebih besar atau sama dengan Rp 8.000.000.
+![](asset/12.jpg)
+- `SELECT` untuk memilih kolom apa saja yang ingin dipilih
+- `NoCab`adalah nama kolom yang ingin ditampilkan.
+- `SUM (Gaji)` untuk menghitung Jumlah data khusus angka pada kolom yang dipilih. Gaji merupakan nama kolom yang dipilih untuk dihitung jumlah isi datanya
+-  `AS` untuk mengubah nama dari suatu kolom untuk sementara
+- `Total_Gaji` merrupakan nama sementara dari dari perintah AS
+- `FROM pegawai` Ini menunjukkan bahwa query ini yang akan dijalankan pada tabel `pegawai` Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
+- `GROUP BY` untuk ngelompokkan data berdasarkan nilai data yang telah di tentukan pada kolom yang dipilih 
+- `NoCab`adalah nama kolom yang ingin ditampilkan.
+- `Having` kondisi yang harus dipenuhi oleh suatu kelompok data agar bisa ditampilkan 
+- `SUM(Gaji) >= 8.000000` kondisi dari having, Hasil dari penjumlahan Gaji yang hanya bisa ditampilkan adalah hasil yang lebih dari atau sama dengan 8.000000 
 
 Hasil query ini menunjukkan bahwa hanya ada 2 cabang yang memiliki total gaji lebih besar atau sama dengan Rp 8.000.000, yaitu:
 - Cabang C102 dengan total gaji Rp 9.450.000
 - Cabang C103 dengan total gaji Rp 9.000.000
 
-8. SELECT AVG
+9. SELECT AVG
 ```sql
 SELECT AVG(Gaji) AS Rata_rata
 FROM pegawai;
 ```
-![](asset/13.JPG)
-1. `SELECT AVG(Gaji) AS Rata_rata`:
-- `AVG(Gaji)`adalah sebuah fungsi yang menghitung rata-rata nilai di kolom `Gaji`dari tabel `pegawai`.
-- Hasil perhitungan rata-rata ini diberi alias `Rata_rata`.
-2. `FROM pegawai`:
-- Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
+![](asset/13.jpg)
+- `SELECT` untuk memilih kolom apa saja yang ingin dipilih
+- `AVG(Gaji)` untuk menghitung rata-rata dari data yang ada pada kolom yang dipilih, Gaji adalah nama kolom yang dipilih untuk dihitung rata-ratanya
+-  `AS` untuk mengubah nama dari suatu kolom untuk sementara
+- `Rata-rata` nama sementara dari perintah AS
+- `FROM pegawai` Ini menunjukkan bahwa query ini yang akan dijalankan pada tabel `pegawai` Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
 
 Jadi, query ini akan menghitung rata-rata gaji dari semua pegawai yang ada di tabel `pegawai`.
 Hasil query menunjukkan bahwa rata-rata gaji pegawai adalah Rp 3.397.222,22.
 
-9. SELECT, FROM, WHERE
+10. SELECT, FROM, WHERE
 ```sql
 SELECT AVG(Gaji) AS RataMgr
 FROM pegawai
 WHERE Jabatan = 'Manajer';
 ```
-![](asset/14.JPG)
-1. `SELECT AVG(Gaji) AS RataMgr`:
-- `AVG(Gaji)`adalah sebuah fungsi yang menghitung rata-rata nilai di kolom `Gaji`dari tabel `pegawai`.
-- Hasil perhitungan rata-rata ini diberi alias `RataMgr`.
-2. `FROM pegawai`:
-- Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
-3. `WHERE Jabatan = 'Manajer'`:
-- Ini adalah sebuah filter yang akan menyeleksi hanya baris-baris yang memiliki nilai `'Manajer'`di kolom `Jabatan`.
+![](asset/14.jpg)
+- `SELECT` untuk memilih kolom apa saja yang ingin dipilih
+- `AVG(Gaji)` untuk menghitung rata-rata dari data yang ada pada kolom yang dipilih, Gaji adalah nama kolom yang dipilih untuk dihitung rata-ratanya
+-  `AS` untuk mengubah nama dari suatu kolom untuk sementara
+- `Rata-rata` nama sementara dari perintah AS
+- `GajiRataMGR` nama sementara dari perintah AS
+- `FROM pegawai` Ini menunjukkan bahwa query ini yang akan dijalankan pada tabel `pegawai` Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
+- `WHERE` kondisi yang harus dipenuhi oleh suatu kolom agar datanya bisa dihitung rata-ratanya
+- `Jabatan = 'Manajer'` kondisi dari WHERE. Barisan data yang kolom jabatannya manajer akan dihitung rata-rata kolom gajinya 
 
 Jadi, query ini akan menghitung rata-rata gaji dari semua pegawai yang memiliki jabatan sebagai Manajer.
 Hasil query menunjukkan bahwa rata-rata gaji pegawai yang berjabatan sebagai Manajer adalah Rp 5.750.000.
 
-10. SELECT AVG, FROM, GROUP BY
+11. SELECT AVG, FROM, GROUP BY
 ```sql
 SELECT NoCab, AVG(Gaji) AS RataGaji
 FROM pegawai
 GROUP BY NoCab;
 ```
-![](asset/15.JPG)
-1. `SELECT NoCab, AVG(Gaji) AS RataGaji`:
-- `NoCab`adalah kolom yang akan diambil nilai-nilainya.
-- `AVG(Gaji) AS RataGaji`adalah sebuah fungsi yang menghitung rata-rata nilai di kolom `Gaji`untuk masing-masing nilai `NoCab`. Hasilnya akan diberi alias `RataGaji`.
-2. `FROM pegawai`:
-- Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
-3. `GROUP BY NoCab`:
-- Ini adalah _grouping Clause_ yang akan mengelompokkan baris-baris berdasarkan nilai pada kolom `NoCab`.
-- Jadi, `AVG(Gaji)`akan dihitung untuk masing-masing nilai unik di kolom `NoCab`.
+![](asset/15.jpg)
+- `SELECT` untuk memilih kolom apa saja yang ingin dipilih
+- `NoCab`adalah nama kolom yang ingin ditampilkan.
+- `AVG(Gaji)` untuk menghitung rata-rata dari data yang ada pada kolom yang dipilih, Gaji adalah nama kolom yang dipilih untuk dihitung rata-ratanya
+-  `AS` untuk mengubah nama dari suatu kolom untuk sementara
+- `RataGaji` adalah nama sementara dari perintah `AS`
+- `FROM pegawai` Ini menunjukkan bahwa query ini yang akan dijalankan pada tabel `pegawai` Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
+- `GROUP BY` untuk ngelompokkan data berdasarkan nilai data yang telah di tentukan pada kolom yang dipilih 
+- `NoCab`adalah nama kolom yang ingin ditampilkan.
 
 Hasil query ini menunjukkan rata-rata gaji pegawai untuk masing-masing cabang:
 - Cabang C101: Rp 3.875.000
@@ -264,83 +283,82 @@ Hasil query ini menunjukkan rata-rata gaji pegawai untuk masing-masing cabang:
 - Cabang C103: Rp 4.500.000
 - Cabang C104: Rp 2.187.500
 
-11. SELECT, FROM, GROUP BY, HAVING
+12. SELECT, FROM, GROUP BY, HAVING
 ```sql
 SELECT NoCab, AVG(Gaji) AS RataGaji
 FROM pegawai
 GROUP BY NoCab
 HAVING NoCab = 'C101' OR NoCab = 'C102';
 ```
-![](asset/16.JPG)
-1. `SELECT NoCab, AVG(Gaji) AS RataGaji`:
-- `NoCab`adalah kolom yang akan diambil nilai-nilainya.
-- `AVG(Gaji) AS RataGaji`adalah sebuah fungsi yang menghitung rata-rata nilai di kolom `Gaji`untuk masing-masing nilai `NoCab`. Hasilnya akan diberi alias `RataGaji`.
-2. `FROM pegawai`:
-- Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
-3. `GROUP BY NoCab`:
-- Ini adalah _grouping Clause_ yang akan mengelompokkan baris-baris berdasarkan nilai pada kolom `NoCab`.
-- Jadi, `AVG(Gaji)`akan dihitung untuk masing-masing nilai unik di kolom `NoCab`.
-4. `HAVING NoCab = 'C101' OR NoCab = 'C102'`:
-- Ini adalah filter yang akan menyeleksi hanya baris-baris yang memiliki nilai `'C101'`atau `'C102'`di kolom `NoCab`.
-- `HAVING`digunakan karena filter ini diterapkan setelah proses pengelompokan ( `GROUP BY`).
+![](asset/16.jjpg)
+- `SELECT` untuk memilih kolom apa saja yang ingin dipilih
+- `NoCab`adalah nama kolom yang ingin ditampilkan.
+- `AVG(Gaji)` untuk menghitung rata-rata dari data yang ada pada kolom yang dipilih, Gaji adalah nama kolom yang dipilih untuk dihitung rata-ratanya
+-  `AS` untuk mengubah nama dari suatu kolom untuk sementara
+- `RataGaji` adalah nama sementara dari perintah `AS`
+- `FROM pegawai` Ini menunjukkan bahwa query ini yang akan dijalankan pada tabel `pegawai` Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
+- `GROUP BY` untuk ngelompokkan data berdasarkan nilai data yang telah di tentukan pada kolom yang dipilih 
+- `NoCab`adalah nama kolom yang ingin ditampilkan.
+- `HAVING` kondisi yang harus dipenuhi oleh suatu kelompok data
+- `NoCab ='C102' OR NoCab ='C102` merupakan kondisi dari `HAVING`
 
 Hasil query ini menunjukkan rata-rata gaji pegawai hanya untuk cabang C101 dan C102:
 - Cabang C101: Rp 3.875.000
 - Cabang C102: Rp 3.150.000
 
-12.  SELECT MAX
+13.  SELECT MAX
 ```sql
 SELECT MAX(Gaji) AS GajiTerbesar, MIN(Gaji) AS GajiTerkecil
 FROM pegawai;
 ```
-![](asset/17.JPG)
-1. `SELECT MAX(Gaji) AS GajiTerbesar, MIN(Gaji) AS GajiTerkecil`:
-- `MAX(Gaji)`adalah sebuah fungsi yang mengembalikan nilai terbesar dari kolom `Gaji`.
-- `MIN(Gaji)`adalah sebuah fungsi yang mengembalikan nilai terkecil dari kolom `Gaji`.
-- Hasil dari kedua fungsi ini masing-masing diberi alias `GajiTerbesar`dan `GajiTerkecil`.
-2. `FROM pegawai`:
-- Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
+![](asset/17.jpg)
+- `SELECT` untuk memilih kolom apa saja yang ingin dipilih
+- `MAX(Gaji)` untuk menampilkan nilai maksimum atau terbesar/tertinggi dari suatu data dalam kolom yang dipilih. `Gaji` adalah nama kolom yang dipilih
+- `AS GajiTerbesar` untuk mengganti nama dari kolom hasil `MAX(Gaji)` menjadi nama sementaranya yaitu GajiTerbesar
+- `MIN(Gaji)` untuk menampilkan nilai terkecil dari suatu data dalam kolom yang dipilih
+- `AS GajiTerkecil` untuk mengganti nama dari kolom hasil `MAX(Gaji)` menjadi nama sementaranya yaitu GajiTekecil
+- `FROM pegawai` Ini menunjukkan bahwa query ini yang akan dijalankan pada tabel `pegawai` Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
 
 Hasil query ini menunjukkan bahwa:
 - Gaji terbesar di antara semua pegawai adalah Rp 6.250.000.
 - Gaji terkecil di antara semua pegawai adalah Rp 1.725.000.
 
-13. SELECT MAX
+14. SELECT MAX
 ```sql
 SELECT MAX(Gaji) AS GajiTerbesar, MIN(Gaji) AS GajiTerkecil
 FROM pegawai
 WHERE Jabatan = 'Manajer';
 ```
-![](asset/18.JPG)
-1. `SELECT MAX(Gaji) AS GajiTerbesar, MIN(Gaji) AS GajiTerkecil`:
-- `MAX(Gaji)`adalah sebuah fungsi yang mengembalikan nilai terbesar dari kolom `Gaji`.
-- `MIN(Gaji)`adalah sebuah fungsi yang mengembalikan nilai terkecil dari kolom `Gaji`.
-- Hasil dari kedua fungsi ini masing-masing diberi alias `GajiTerbesar`dan `GajiTerkecil`.
-2. `FROM pegawai`:
-- Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
-3. `WHERE Jabatan = 'Manajer'`:
-- Ini adalah _filter_ yang akan menyeleksi hanya baris-baris yang memiliki nilai `'Manajer'`di kolom `Jabatan`.
+![](asset/18.jpg)
+- `SELECT` untuk memilih kolom apa saja yang ingin dipilih
+- `MAX(Gaji)` untuk menampilkan nilai maksimum atau terbesar/tertinggi dari suatu data dalam kolom yang dipilih. `Gaji` adalah nama kolom yang dipilih
+- `AS GajiTerbesar` untuk mengganti nama dari kolom hasil `MAX(Gaji)` menjadi nama sementaranya yaitu GajiTerbesar
+- `MIN(Gaji)` untuk menampilkan nilai terkecil dari suatu data dalam kolom yang dipilih
+- `AS GajiTerkecil` untuk mengganti nama dari kolom hasil `MAX(Gaji)` menjadi nama sementaranya yaitu GajiTekecil
+- `FROM pegawai` Ini menunjukkan bahwa query ini yang akan dijalankan pada tabel `pegawai` Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
+- `WHERE` kondisi yang harus dipenuhi oleh suatu kolom data agar bisa di tampilkan
+- `Jabatan = 'Manajer'` kondisi dari WHERE yang harus dipenuhi, Barisan data yang kolom jabatannya berisi manajer akan ditampilkan kolom gajinya
 
 Hasil query ini menunjukkan bahwa: 
 - Gaji terbesar di antara para manajer adalah Rp 6.250.000.
 - Gaji terkecil di antara para manajer adalah Rp 5.250.000.
 
-14.  SELECT, FROM, GROUP BY
+15.  SELECT, FROM, GROUP BY
 ```sql
 SELECT NoCab, MAX(Gaji) AS GajiTerbesar, MIN(Gaji) AS GajiTerkecil
 FROM pegawai
 GROUP BY NoCab;
 ```
-![](asset/19.JPG)
-1. `SELECT NoCab, MAX(Gaji) AS GajiTerbesar, MIN(Gaji) AS GajiTerkecil`:
-- `NoCab`adalah kolom yang akan diambil nilai-nilainya.
-- `MAX(Gaji) AS GajiTerbesar`adalah sebuah fungsi yang menghitung nilai terbesar di kolom `Gaji`untuk masing-masing nilai `NoCab`. Hasilnya akan diberi alias `GajiTerbesar`.
-- `MIN(Gaji) AS GajiTerkecil`adalah sebuah fungsi yang menghitung nilai terkecil di kolom `Gaji`untuk masing-masing nilai `NoCab`. Hasilnya akan diberi alias `GajiTerkecil`.
-2. `FROM pegawai`:
-- Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
-3. `GROUP BY NoCab`:
-- Ini adalah _grouping Clause_ yang akan mengelompokkan baris-baris berdasarkan nilai pada kolom `NoCab`.
-- Jadi, `MAX(Gaji)`dan `MIN(Gaji)`akan dihitung untuk masing-masing nilai unik di kolom `NoCab`.
+![](asset/19.jpg)
+- `SELECT` untuk memilih kolom apa saja yang ingin dipilih
+- `NoCab`adalah nama kolom yang ingin ditampilkan.
+- `MAX(Gaji)` untuk menampilkan nilai maksimum atau terbesar/tertinggi dari suatu data dalam kolom yang dipilih. `Gaji` adalah nama kolom yang dipilih
+- `AS GajiTerbesar` untuk mengganti nama dari kolom hasil `MAX(Gaji)` menjadi nama sementaranya yaitu GajiTerbesar
+- `MIN(Gaji)` untuk menampilkan nilai terkecil dari suatu data dalam kolom yang dipilih
+- `AS GajiTerkecil` untuk mengganti nama dari kolom hasil `MAX(Gaji)` menjadi nama sementaranya yaitu GajiTekecil
+- `FROM pegawai` Ini menunjukkan bahwa query ini yang akan dijalankan pada tabel `pegawai` Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
+- `GROUP BY` untuk ngelompokkan data berdasarkan nilai data yang telah di tentukan pada kolom yang dipilih 
+- `NoCab`adalah nama kolom yang ingin ditampilkan.
 
 Hasil query ini menunjukkan:
  Untuk cabang C101:
@@ -356,31 +374,31 @@ Hasil query ini menunjukkan:
 - Gaji terbesar: Rp 2.650.000
 - Gaji terkecil: Rp 1.725.000
 
-15. SELECT, FROM, GROUP BY, HAVING COUNT
+16. SELECT, FROM, GROUP BY, HAVING COUNT
 ```sql
 SELECT NoCab, MAX(Gaji) AS GajiTerbesar, MIN(Gaji) AS GajiTerkecil
 FROM pegawai
 GROUP BY NoCab
 HAVING COUNT(NIP) >= 3;
 ```
-![](asset/20.JPG)
-1. `SELECT NoCab, MAX(Gaji) AS GajiTerbesar, MIN(Gaji) AS GajiTerkecil`:
-- `NoCab`adalah kolom yang akan diambil nilai-nilainya.
-- `MAX(Gaji) AS GajiTerbesar`adalah sebuah fungsi yang menghitung nilai terbesar di kolom `Gaji`untuk masing-masing nilai `NoCab`. Hasilnya akan diberi alias `GajiTerbesar`.
-- `MIN(Gaji) AS GajiTerkecil`adalah sebuah fungsi yang menghitung nilai terkecil di kolom `Gaji`untuk masing-masing nilai `NoCab`. Hasilnya akan diberi alias `GajiTerkecil`.
-2. `FROM pegawai`:
-- Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
-3. `GROUP BY NoCab`:
-- Ini adalah _grouping Clause_ yang akan mengelompokkan baris-baris berdasarkan nilai pada kolom `NoCab`.
-- Jadi, `MAX(Gaji)`dan `MIN(Gaji)`akan dihitung untuk masing-masing nilai unik di kolom `NoCab`.
-4. `HAVING COUNT(NIP) >= 3`:
-- Ini adalah _filter_ yang akan menyeleksi hanya kelompok-kelompok yang memiliki jumlah baris (dihitung berdasarkan `NIP`) lebih besar atau sama dengan 3.
+![](asset/20.jpg)
+- `SELECT` untuk memilih kolom apa saja yang ingin dipilih
+- `NoCab`adalah nama kolom yang ingin ditampilkan.
+- `MAX(Gaji)` untuk menampilkan nilai maksimum atau terbesar/tertinggi dari suatu data dalam kolom yang dipilih. `Gaji` adalah nama kolom yang dipilih
+- `AS GajiTerbesar` untuk mengganti nama dari kolom hasil `MAX(Gaji)` menjadi nama sementaranya yaitu GajiTerbesar
+- `MIN(Gaji)` untuk menampilkan nilai terkecil dari suatu data dalam kolom yang dipilih
+- `AS GajiTerkecil` untuk mengganti nama dari kolom hasil `MAX(Gaji)` menjadi nama sementaranya yaitu GajiTekecil
+- `FROM pegawai` Ini menunjukkan bahwa query ini yang akan dijalankan pada tabel `pegawai` Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
+- `GROUP BY` untuk ngelompokkan data berdasarkan nilai data yang telah di tentukan pada kolom yang dipilih 
+- `NoCab`adalah nama kolom yang ingin ditampilkan.
+- `HAVING` kondisi yang harus dipenuhi oleh suatu kelompok data
+- `COUNT(NIP) >= 3` kondisi dari `HAVING`. Hanya hasil hitung kolom NIP yang lebih dari atau sama dengan 3 yang muncul
 
 Hasil query ini menunjukkan bahwa hanya ada satu cabang (C102) yang memiliki jumlah pegawai minimal 3, dengan:
 - Gaji terbesar: Rp 5.750.000
 - Gaji terkecil: Rp 1.750.000
 
-16.  SELECT COUNT
+17.  SELECT COUNT
 ```sql
 SELECT COUNT(NIP) AS JumlahPegawai, 
        SUM(Gaji) AS TotalGaji,
@@ -389,24 +407,18 @@ SELECT COUNT(NIP) AS JumlahPegawai,
        MIN(Gaji) AS Gajimin
 FROM pegawai;
 ```
-![](asset/21.JPG)
-1. `SELECT COUNT(NIP) AS JumlahPegawai`:
-- Ini menghitung jumlah baris (pegawai) dalam tabel `pegawai`menggunakan fungsi agregat `COUNT(NIP)`.
-- Hasilnya akan diberikan alias `JumlahPegawai`.
-2. `SUM(Gaji) AS TotalGaji`:
-- Ini menghitung total gaji seluruh pegawai menggunakan fungsi agregat `SUM(Gaji)`.
-- Hasilnya akan diberikan alias `TotalGaji`.
-3. `AVG(Gaji) AS RataGaji`:
-- Ini menghitung rata-rata gaji pegawai menggunakan fungsi agregat `AVG(Gaji)`.
-- Hasilnya akan diberikan alias `RataGaji`.
-4. `MAX(Gaji) AS GajiMaks`:
-- Ini menghitung gaji terbesar menggunakan fungsi agregat `MAX(Gaji)`.
-- Hasilnya akan diberikan alias `GajiMaks`.
-5. `MIN(Gaji) AS Gajimin`:
-- Ini menghitung gaji terkecil menggunakan fungsi agregat `MIN(Gaji)`.
-- Hasilnya akan diberikan alias `Gajimin`.
-6. `FROM pegawai`:
-- Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
+![](asset/21.jpg)
+- `SELECT` untuk memilih kolom apa saja yang ingin dipilih
+- `COUNT(NIP)` untuk menghitung jumlah barisan data yang ada pada kolam yang dipilih
+- `AS JumlahPegawai` untuk mengganti nama kolom hasil `COUNT(NIP)` menjadi jumlah pegawai
+- `SUM(Gaji)` untuk menjumlah data yang ada pada kolom yang dipilih. Gaji adalah kolom yang dipilih
+- `AS TotalGaji` untuk mengganti nama kolom hasil `SUM(Gaji)` menjadi total gaji
+- `AVG(Gaji)` untuk menghitung rata-ratanya suatu data dalam kolom yang dipilih. Gaji adalah nama kolom yang dipilih untuk dihitung
+-  `AS RataGaji` untuk mengganti nama kolom hasil `AVG(Gaji)` menjadi rata gaji
+- `MAX(Gaji)` untuk menampilkan nilai maksimum atau terbesar/tertinggi dari suatu data dalam kolom yang dipilih. `Gaji` adalah nama kolom yang dipilih
+- `AS GajiMaks` untuk mengganti nama dari kolom hasil `MAX(Gaji)` menjadi GajiMaks untuk sementara
+- `AS GajiMin` untuk mengganti nama dari kolom hasil `MIN(Gaji)` menjadi GajiMin untuk sementara
+- `FROM pegawai` Ini menunjukkan bahwa query ini yang akan dijalankan pada tabel `pegawai` Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
 
 Hasil query ini menunjukkan:
 - Jumlah pegawai: 9
@@ -427,18 +439,25 @@ WHERE Jabatan = 'Staf' OR Jabatan = 'Sales'
 GROUP BY NoCab
 HAVING SUM(Gaji) <= 2600000;
 ```
-![](asset/22.JPG)
-1. `SELECT COUNT(NIP) AS JumlahPegawai, SUM(Gaji) AS TotalGaji, AVG(Gaji) AS RataGaji, MAX(Gaji) AS GajiMaks, MIN(Gaji) AS Gajimin`:
-- Ini adalah bagian yang sama dengan query sebelumnya, menghitung jumlah pegawai, total gaji, rata-rata gaji, gaji terbesar, dan gaji terkecil.
-2. `FROM pegawai`:
-- Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
-3. `WHERE Jabatan = 'Staf' OR Jabatan = 'Sales'`:
-- Ini adalah filter yang hanya akan mengambil data pegawai yang memiliki jabatan 'Staf' atau 'Sales'.
-4. `GROUP BY NoCab`:
-- Ini adalah _grouping Clause_ yang akan mengelompokkan baris-baris berdasarkan nilai pada kolom `NoCab`.
-- Jadi, `COUNT(NIP)`, `SUM(Gaji)`, `AVG(Gaji)`, `MAX(Gaji)`, dan `MIN(Gaji)`akan dihitung untuk masing-masing nilai unik di kolom `NoCab`.
-5. `HAVING SUM(Gaji) <= 2600000`:
-- Ini adalah  filter yang akan menyeleksi hanya kelompok-kelompok yang memiliki total gaji kurang dari atau sama dengan Rp 2.600.000.
+![](asset/22.jpg)
+- `SELECT` untuk memilih kolom apa saja yang ingin dipilih
+- `COUNT(NIP)` untuk menghitung jumlah barisan data yang ada pada kolam yang dipilih
+- `AS JumlahPegawai` untuk mengganti nama kolom hasil `COUNT(NIP)` menjadi jumlah pegawai
+- `SUM(Gaji)` untuk menjumlah data yang ada pada kolom yang dipilih. Gaji adalah kolom yang dipilih
+- `AS TotalGaji` untuk mengganti nama kolom hasil `SUM(Gaji)` menjadi total gaji
+- `AVG(Gaji)` untuk menghitung rata-ratanya suatu data dalam kolom yang dipilih. Gaji adalah nama kolom yang dipilih untuk dihitung
+-  `AS RataGaji` untuk mengganti nama kolom hasil `AVG(Gaji)` menjadi rata gaji
+- `MAX(Gaji)` untuk menampilkan nilai maksimum atau terbesar/tertinggi dari suatu data dalam kolom yang dipilih. `Gaji` adalah nama kolom yang dipilih
+- `AS GajiMaks` untuk mengganti nama dari kolom hasil `MAX(Gaji)` menjadi GajiMaks untuk sementara
+- `MIN(Gaji)` untuk menampilkan nilai minimum dari suatu data dalam kolom yang dipilih. Gaji adalah nama kolom yang dipilih
+- `AS GajiMin` untuk mengganti nama dari kolom hasil `MIN(Gaji)` menjadi GajiMin untuk sementara
+- `FROM pegawai` Ini menunjukkan bahwa query ini yang akan dijalankan pada tabel `pegawai` Ini menunjukkan bahwa query ini akan dijalankan pada tabel `pegawai`.
+- `WHERE` kondisi yang harus dipenuhi oleh suatu kolom data agar bisa di tampilkan
+- `Jabatan = 'Staf' OR Jabatan = 'Sales'` kondisi dari `WHERE` Jadi hanya jabatan staf atau jabatan sales, hanya salah satunya saja yang harus dipenuhi agar bisa tampil. `OR` hanya salah satu kondis yang harus dipenuhi
+- `GROUP BY` untuk ngelompokkan data berdasarkan nilai data yang telah di tentukan pada kolom yang dipilih 
+- `NoCab`adalah nama kolom yang ingin ditampilkan.
+- `HAVING` kondisi yang harus dipenuhi oleh suatu kelompok data
+- `SUM(Gaji) <= 2.600000` kondisi dari `HAVING` Hanya data yang yang hasil jumlahan gajinya kurang dari atau sama dengan 2.600000 yang bisa tampil.
 
 Hasil query ini menunjukkan bahwa ada 2 cabang (NoCab) yang memiliki total gaji pegawai 'Staf' atau 'Sales' kurang dari atau sama dengan Rp 2.600.000, dengan rincian:
  Cabang 1:
